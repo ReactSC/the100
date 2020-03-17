@@ -19,11 +19,12 @@ function App() {
       <Header />
         <Container style={{margin:'75px auto'}}>
           <Switch>
-            <Route path="/about" exact component={About} />
-            <Route path="/faq" exact component={FAQ} />
-            <Route path="/settings" exact component={Settings} />
-            <Route path="/f" exact component={Favourite} />
-            <Route path="/v/:id" exact component={Single} />
+            <Route path="/about" component={About} />
+            <Route path="/faq" component={FAQ} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/f" component={Favourite} />
+            <Route path="/v/:id" component={Single} />
+            <Route path="/the100" component={Home} />
             <Route path="/" exact component={Home} />
           </Switch>
         </Container>
