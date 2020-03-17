@@ -24,8 +24,8 @@ function App() {
           <Route path="/settings" component={Settings} />
           <Route path="/f" component={Favourite} />
           <Route path="/v/:id" component={Single} />
+          <Route path="/the100" component={Home} />
           <Route path="/" exact component={Home} />
-          <Redirect from="/the100" to="/" />
         </Switch>
       </Container>
       <Footer />
