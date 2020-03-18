@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
 
 import { SingleCard } from '../widgets';
-import { MainContext } from '../store/contexts';
+import { PersonCentext, SettingContext } from '../store';
 
 const Home = () => {
-  const user = useContext(MainContext).state;
+  const person = useContext(PersonCentext).person;
+
   return (
     <Grid container spacing={2}>
-      {user.map((x, i) => (
+      {person.map((x, i) => (
         <SingleCard
           key={ i }
           avater={ x.photo }
@@ -21,7 +22,6 @@ const Home = () => {
     </Grid>
   );
 }
-
 export default Home;
 
 // Supply Props

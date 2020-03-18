@@ -1,11 +1,12 @@
-import React, { Fragment } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 
 // import css
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import { SettingContext } from './store/contexts';
 
 // import Pages
 import { Home, Single, Favourite, Settings, FAQ, About } from './pages';
@@ -13,11 +14,13 @@ import { Home, Single, Favourite, Settings, FAQ, About } from './pages';
 // import Header & Footer from Widgets
 import { Header, Footer } from './widgets';
 
-function App() {
+const App = () => {
+  const theme = useContext(SettingContext).activeTheme;
+
   return (
-    <Fragment>
+    <div style={{background: theme.bgSecondary}}>
       <Header />
-      <Container style={{ margin: "75px auto" }}>
+      <Container style={{ paddingTop:75, paddingBottom:75 }}>
         <Switch>
           <Route path="/about" component={About} />
           <Route path="/faq" component={FAQ} />
@@ -29,7 +32,7 @@ function App() {
         </Switch>
       </Container>
       <Footer />
-    </Fragment>
+    </div>
   );
 }
 export default App;

@@ -7,4 +7,11 @@ import BackButton from './BackButton';
 
 
 // Export all Components
-export { Action, SingleCard, Header, Footer, SocialWidget, BackButton };
+export {
+  Action,
+  SingleCard,
+  Header,
+  Footer,
+  SocialWidget,
+  BackButton
+};

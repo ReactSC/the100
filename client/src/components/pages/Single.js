@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Share, Star, Print } from '@material-ui/icons';
 
 // import Components
-import { MainContext } from '../store/contexts';
+import { PersonCentext } from '../store';
 import { BackButton } from '../widgets'
 
 // JSS code
@@ -39,14 +39,14 @@ const useStyles = makeStyles(theme => ({
 
 
 const Single = props => {
-  const user = useContext(MainContext).state;
+  const person = useContext(PersonCentext).person;
   const id = Number(props.match.params.id);
   
   // let find = user.find(f => (Number(f.id) === id));
   // if (find === undefined) {
     //   find = user.find(f => (Number(f.id) === 1))
     // }
-  const find = user[id - 1];
+  const find = person[id - 1];
   if (find === undefined) {
     return (
       <h4 className="mx-auto text-center" variant="p">
