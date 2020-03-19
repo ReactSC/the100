@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppBar, Typography, Link } from '@material-ui/core';
+import { AppBar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { SettingContext } from '../store/contexts';
@@ -10,33 +10,39 @@ const useStyles = makeStyles({
   appBar: {
     top: 'auto',
     bottom: 0,
-    background: '#581D8D',
   },
 })
 
 const Footer = () => {
   const classes = useStyles();
-  const theme = useContext(SettingContext).activeTheme;
+  const theme = useContext(SettingContext).theme;
 
   return (
     <AppBar
       position="fixed"
       className={classes.appBar}
-      style={{ background: theme.bgPrimary }}
+      style={{ background: theme.navbar }}
     >
-      <Typography className="text-center py-2" variant="h5">
-        by: 
-        <Link
+      <Typography
+        className="text-center py-2"
+        variant="h5"
+        style={{ color: theme.color }}
+      >
+        by:
+        <a
           style={{
-            textDecoration: 'none',
+            textDecoration: "none",
             color: theme.color,
             marginLeft: 10
           }}
-          href="//facebook.com/schoolwab">
+          href="//facebook.com/schoolwab"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           SChoolWab
-        </Link>
+        </a>
       </Typography>
     </AppBar>
-  )
+  );
 }
 export default Footer;

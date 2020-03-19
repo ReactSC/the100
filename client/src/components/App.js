@@ -15,10 +15,10 @@ import { Home, Single, Favourite, Settings, FAQ, About } from './pages';
 import { Header, Footer } from './widgets';
 
 const App = () => {
-  const theme = useContext(SettingContext).activeTheme;
+  const theme = useContext(SettingContext).theme;
 
   return (
-    <div style={{background: theme.bgSecondary}}>
+    <div style={{background: theme.body, minHeight: '100vh'}}>
       <Header />
       <Container style={{ paddingTop:75, paddingBottom:75 }}>
         <Switch>

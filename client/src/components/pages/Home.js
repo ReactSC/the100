@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
 
 import { SingleCard } from '../widgets';
-import { PersonCentext, SettingContext } from '../store';
+import { PersonCentext } from '../store';
 
 const Home = () => {
   const person = useContext(PersonCentext).person;
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} justify="center">
       {person.map((x, i) => (
         <SingleCard
           key={ i }

@@ -2,6 +2,8 @@ import PersonProvider from './PersonProvider';
 import SettingProvider from './SettingProvider';
 import FevProvider from './FevProvider';
 
+import { initTheme } from './initTheme';
+
 // import all Context
 import {
   PersonCentext,
@@ -18,4 +20,5 @@ export {
   SettingContext,
   FevContext,
   PersonCentext,
+  initTheme,
 }

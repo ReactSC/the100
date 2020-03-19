@@ -1,45 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 
 // import Contexts
-import { SettingContext } from './contexts';
+import { SettingContext, initTheme } from './index';
+
 
 const SettingProvider = props => {
-
- // create a default theme
-  const theme = {
-    default: {
-      bgPrimary: '#491578',
-      bgSecondary: '#762CB7',
-      color: '#fff',
-    },
-    light: {
-      bgPrimary: '#491578',
-      bgSecondary: '#762CB7',
-      color: '#fff',
-    },
-    dark: {
-      bgPrimary: '#491578',
-      bgSecondary: '#762CB7',
-      color: '#fff',
-    }
+  // declere Initial
+  const defaultTheme = {
+    card: '#491578',
+    paper: '#491578',
+    navbar: '#491578',
+    body: '#762CB7',
+    button: '#491578',
+    color: '#fff',
+    colorSecondary: '#aaa'
   }
 
   // declere State
   const [state, setState] = useState({
-    theme,
-    activeTheme: theme.default,
+    theme: localStorage.getItem("theme")
+      ? JSON.parse(localStorage.getItem("theme"))
+      : defaultTheme
   });
 
+  // change Theme Function
+  const cngTheme = data => {
+    setState({
+      ...state,
+      theme: data
+    })
+  }
 
   // create a variable to pass a props in MainContext.Provider
   const access = {
+    initTheme,
     theme: state.theme,
-    activeTheme: state.activeTheme,
+    cngTheme,
   }
 
   return (
-    <SettingContext.Provider value={access}>
-      {props.children}
+    <SettingContext.Provider value={ access } >
+      { props.children }
     </SettingContext.Provider>
   )
 }

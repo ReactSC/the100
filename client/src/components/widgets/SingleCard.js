@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Grid,
@@ -9,30 +9,35 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { SettingContext } from '../store';
 
-const useStyles = makeStyles(theme => ({
+
+const useStyles = makeStyles({
   root: {
-    maxWidth: 360,
+    maxWidth: 400,
     display: "flex",
-    cursor: 'pointer',
+    cursor: "pointer",
+    boxShadow: "none",
+    margin: "auto"
   },
   content: {
-    flex: "1 0 auto",
+    flex: "1 0 auto"
   },
   cover: {
     width: 100
   },
   sl: {
-    minWidth: '100px',
-    background: '#ffffffcc',
-    padding: '2px 5px',
-    fontWeight: 500,
+    minWidth: "100px",
+    background: "#ffffffcc",
+    padding: "2px 5px",
+    fontWeight: 500
   }
-}));
+});
 
 const SingleCard = props => {
   const classes = useStyles();
   const history = useHistory();
+  const theme = useContext(SettingContext).theme;
 
   // Distructure from Props
   const { avater, name, sl, alive, country } = props;
@@ -43,7 +48,11 @@ const SingleCard = props => {
 
   return (
     <Grid item lg={3} md={4} sm={6} xs={12} >
-      <Card className={classes.root} onClick={ () => clickHandler(sl) }>
+      <Card
+        style={{ background: theme.card }}
+        className={classes.root}
+        onClick={() => clickHandler(sl)}
+      >
         {/* Card Media */}
         <CardMedia className={classes.cover} image={avater} title={name}>
           <span className={classes.sl}>{sl}</span>
@@ -51,13 +60,22 @@ const SingleCard = props => {
 
         {/* Card Contents */}
         <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
+          <Typography
+            component="h5"
+            variant="h5"
+            style={{ color: theme.color }} >
             {name}
           </Typography>
 
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography
+            variant="subtitle1"
+            style={{ color: theme.colorSecondary }}>
             {alive}
-            <Link className="ml-2" to={`/s/${country}`}>
+
+            <Link
+              className="ml-2"
+              style={{ color: theme.colorSecondary }}
+              to={`/${country}`}>
               {country}
             </Link>
           </Typography>

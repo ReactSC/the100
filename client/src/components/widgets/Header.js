@@ -18,46 +18,52 @@ const useStyles = makeStyles({
 
 const Header = () => {
   const classes = useStyles();
-  const theme = useContext(SettingContext).activeTheme
+  const theme = useContext(SettingContext).theme
 
   return (
     <AppBar
       position="fixed"
-      style={{ background: theme.bgPrimary }}
-      className={classes.appBar}>
+      style={{ background: theme.navbar }}
+      className={classes.appBar}
+    >
       <Toolbar>
         <Typography variant="h5">
           <Link
             style={{
-              textDecoration: 'none',
-              color: theme.color,
+              textDecoration: "none",
+              color: theme.color
             }}
-            to="/">The Hundred
+            to="/"
+          >
+            The Hundred
           </Link>
         </Typography>
 
-        <div className={ classes.menuIcons }>
+        <div className={classes.menuIcons}>
           <Link to="/f">
-            <IconButton style={{ color: theme.color }} >
+            <IconButton style={{ color: theme.color }}>
               <Star />
             </IconButton>
           </Link>
 
           <Link to="/settings">
-            <IconButton style={{ color: theme.color }} >
+            <IconButton style={{ color: theme.color }}>
               <Settings />
             </IconButton>
           </Link>
 
-          <Link to="//github.com/reactsc/the100">
-            <IconButton edge="end" style={{ color: theme.color }} >
+          <a
+            href="//github.com/reactsc/the100"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <IconButton edge="end" style={{ color: theme.color }}>
               <GitHub />
             </IconButton>
-          </Link>
+          </a>
         </div>
-
       </Toolbar>
     </AppBar>
-  )
+  );
 }
 export default Header;

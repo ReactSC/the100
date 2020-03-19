@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Share, Star, Print } from '@material-ui/icons';
 
 // import Components
-import { PersonCentext } from '../store';
+import { PersonCentext, SettingContext } from '../store';
 import { BackButton } from '../widgets'
 
 // JSS code
@@ -31,9 +31,8 @@ const useStyles = makeStyles(theme => ({
   p: {
     marginTop: 10,
     minHeight: '400px',
-    background: '#581D8D',
-    color: '#fff',
     padding: 10,
+    boxShadow: 'none',
   }
 }));
 
@@ -124,9 +123,11 @@ const ContentHeader = props => {
 
 const ContentBody = props => {
   const classes = useStyles();
+  const theme = useContext(SettingContext).theme;
+
   return (
     <Grid item lg={6} md={8} xs={12} >
-      <Paper className={classes.p}>
+      <Paper className={classes.p} style={{ background: theme.paper, color: theme.color }} >
         <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
       </Paper>
     </Grid>

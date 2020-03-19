@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { Fragment, useContext } from 'react';
+
+import { BackButton } from '../widgets';
 
 const FAQ = () => {
-  return (<h1>FAQ</h1>)
+  return (
+    <Fragment>
+      <BackButton />
+    </Fragment>
+  )
 }
 export default FAQ;
