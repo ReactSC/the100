@@ -1,8 +1,8 @@
 // create a default theme
 export const initTheme = {
   default: {
-    card: "#491578",
-    paper: "#491578",
+    card: "linear-gradient(90deg, #52227E, #491578)",
+    paper: "linear-gradient(180deg, #52227E, #491578)",
     navbar: "#491578",
     body: "#762CB7",
     button: "#491578",

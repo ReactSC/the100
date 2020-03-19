@@ -43,7 +43,8 @@ const SingleCard = props => {
   const { avater, name, sl, alive, country } = props;
   
   const clickHandler = id => {
-    history.action === "POP" && history.push(`/v/${sl}`);
+    // history.action === "POP" &&
+    history.push(`/v/${sl}`);
   }
 
   return (
@@ -75,7 +76,7 @@ const SingleCard = props => {
             <Link
               className="ml-2"
               style={{ color: theme.colorSecondary }}
-              to={`/${country}`}>
+              to={`/country/${country}`}>
               {country}
             </Link>
           </Typography>

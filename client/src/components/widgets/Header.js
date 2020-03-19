@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, Badge } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { GitHub, Settings, Star } from '@material-ui/icons';
 
@@ -18,7 +18,9 @@ const useStyles = makeStyles({
 
 const Header = () => {
   const classes = useStyles();
-  const theme = useContext(SettingContext).theme
+  const theme = useContext(SettingContext).theme;
+
+  const fevNum = localStorage.fev && JSON.parse(localStorage.getItem('fev')).length;
 
   return (
     <AppBar
@@ -31,7 +33,9 @@ const Header = () => {
           <Link
             style={{
               textDecoration: "none",
-              color: theme.color
+              color: theme.color,
+              textTransform: 'uppercase',
+              fontWeight: 600
             }}
             to="/"
           >
@@ -42,6 +46,11 @@ const Header = () => {
         <div className={classes.menuIcons}>
           <Link to="/f">
             <IconButton style={{ color: theme.color }}>
+              {fevNum > 0 &&
+                <Badge
+                variant="dot"
+                color="secondary"
+                ></Badge>}
               <Star />
             </IconButton>
           </Link>

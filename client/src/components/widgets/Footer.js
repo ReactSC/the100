@@ -19,7 +19,6 @@ const Footer = () => {
 
   return (
     <AppBar
-      position="fixed"
       className={classes.appBar}
       style={{ background: theme.navbar }}
     >

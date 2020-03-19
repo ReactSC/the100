@@ -5,22 +5,12 @@ import { SettingContext, initTheme } from './index';
 
 
 const SettingProvider = props => {
-  // declere Initial
-  const defaultTheme = {
-    card: '#491578',
-    paper: '#491578',
-    navbar: '#491578',
-    body: '#762CB7',
-    button: '#491578',
-    color: '#fff',
-    colorSecondary: '#aaa'
-  }
 
   // declere State
   const [state, setState] = useState({
     theme: localStorage.getItem("theme")
       ? JSON.parse(localStorage.getItem("theme"))
-      : defaultTheme
+      : initTheme.default
   });
 
   // change Theme Function

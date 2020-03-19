@@ -9,7 +9,7 @@ import './App.css';
 import { SettingContext } from './store/contexts';
 
 // import Pages
-import { Home, Single, Favourite, Settings, FAQ, About } from './pages';
+import { Home, Single, Favourite, Settings, FAQ, About, Country } from './pages';
 
 // import Header & Footer from Widgets
 import { Header, Footer } from './widgets';
@@ -27,6 +27,7 @@ const App = () => {
           <Route path="/settings" component={Settings} />
           <Route path="/f" component={Favourite} />
           <Route path="/v/:id" component={Single} />
+          <Route path="/country/:country" component={Country} />
           <Route path="/the100" component={Home} />
           <Route path="/" exact component={Home} />
         </Switch>

@@ -10,14 +10,14 @@ import {
   Paper
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Share, Star, Print } from '@material-ui/icons';
+import { Share, Star, StarBorder, Print } from '@material-ui/icons';
 
 // import Components
-import { PersonCentext, SettingContext } from '../store';
+import { PersonCentext, SettingContext, FevContext } from '../store';
 import { BackButton } from '../widgets'
 
 // JSS code
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     display: "flex",
     cursor: 'pointer',
@@ -31,10 +31,11 @@ const useStyles = makeStyles(theme => ({
   p: {
     marginTop: 10,
     minHeight: '400px',
-    padding: 10,
+    padding: 20,
     boxShadow: 'none',
+    lineHeight: '30px'
   }
-}));
+});
 
 
 const Single = props => {
@@ -64,6 +65,7 @@ const Single = props => {
       <BackButton />
       <Grid container justify="center">
         <ContentHeader
+          id={ id }
           avater={find.photo}
           name={`${find.name}  ${find.surname}`}
           alive={`${new Date(find.birthday.raw).getFullYear()} - ${new Date(
@@ -84,10 +86,25 @@ export default Single;
 
 const ContentHeader = props => {
   const classes = useStyles();
+  const fevContext = useContext(FevContext);
 
   // Distructure from Props
   const { avater, name, alive, country } = props;
 
+  const shareHandler = () => console.log('Share ...!')
+
+  const setFev = id => {
+    fevContext.setFev(id)
+  }
+
+  // const rmFev = id => {
+  //   // fevContext.rmFev(id)
+  //   console.log(`${id} has removed`)
+  // }
+
+  const printHandler = () => window.print();
+
+  const fevStore = localStorage.fev ? JSON.parse(localStorage.getItem('fev')).find( f=> f === props.id ): null;
 
   return (
     <Grid item lg={6} md={8} xs={12} >
@@ -103,18 +120,30 @@ const ContentHeader = props => {
 
           <Typography variant="subtitle1" color="textSecondary">
             {alive}
-            <Link className="ml-2" to={`/s/${country}`}>
+            <Link className="ml-2" to={`/country/${country}`}>
               {country}
             </Link>
           </Typography>
         </CardContent>
+
         <div className="mx-2 my-auto">
-          <IconButton size="small"> <Share /> </IconButton>
+          <IconButton size="small" onClick={ shareHandler }>
+            <Share />
+          </IconButton>
           <br/>
-          <IconButton size="small"> <Star /> </IconButton>
+          <IconButton
+            size="small"
+            onClick={() => setFev(props.id)}
+            disabled={fevStore ? true : false}
+          > 
+            { fevStore ? <Star /> : <StarBorder /> }
+          </IconButton>
           <br/>
-          <IconButton size="small"> <Print /> </IconButton>
+          <IconButton size="small" onClick={ printHandler }>
+            <Print />
+          </IconButton>
         </div>
+
       </Card>
     </Grid>
   )
