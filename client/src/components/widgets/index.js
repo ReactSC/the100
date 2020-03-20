@@ -5,6 +5,9 @@ import Footer from './Footer';
 import SocialWidget from './SocialWidget';
 import BackButton from './BackButton';
 
+import InputField from './InputField';
+import LoginCard from './LoginCard';
+
 
 // Export all Components
 export {
@@ -13,5 +16,7 @@ export {
   Header,
   Footer,
   SocialWidget,
-  BackButton
+  BackButton,
+  InputField,
+  LoginCard,
 };

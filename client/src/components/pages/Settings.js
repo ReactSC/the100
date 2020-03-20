@@ -7,16 +7,18 @@ import {
   FormControlLabel,
   Paper,
   Typography,
+  Toolbar,
+  Button,
 } from '@material-ui/core';
 
 import { SettingContext } from '../store';
-import { BackButton } from '../widgets';
+import { BackButton, LoginCard } from '../widgets';
 
 
 const Settings = () => {
   const settings = useContext(SettingContext);
   const theme = settings.initTheme;
-
+  
   // state for Radio Group
   const [value, setValue] = useState(localStorage.getItem('themeName') ? localStorage.getItem('themeName') : 'default');
   
@@ -48,7 +50,8 @@ const Settings = () => {
     }
   }
 
-document.title = "Settings | The 100";
+  document.title = "Settings | The 100";
+  const auth = localStorage.getItem("auth");
 
   return (
     <Fragment>
@@ -94,13 +97,57 @@ document.title = "Settings | The 100";
                   control={<Radio />}
                   label="Dark"
                 />
-                
               </RadioGroup>
             </FormControl>
           </Paper>
+        </Grid>
+
+        <Grid container justify="center">
+          <Grid item md={6} xs={8} className="my-3">
+            <Paper
+              style={{
+                background: settings.theme.paper,
+                padding: 20
+              }}
+            >
+              <LoginCard />
+            </Paper>
+          </Grid>
         </Grid>
       </Grid>
     </Fragment>
   );
 }
 export default Settings;
+
+
+
+
+
+export const LoginMsg = () => {
+  const theme = useContext(SettingContext).theme;
+  const rmAuth = () => {
+    localStorage.setItem("auth", false);
+  }
+  return (
+    <Toolbar>
+      <Typography
+        variant="h5"
+        component="legend"
+        style={{ color: theme.color, marginBottom: 10 }}
+      >
+          Logged in
+      </Typography>
+        <Button
+          variant="contained"
+          onClick={ rmAuth }
+          style={{
+            background: theme.body,
+            color: theme.color,
+            minWidth: 100
+        }} >
+          Log Out
+      </Button>
+    </Toolbar>
+  )
+}

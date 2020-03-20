@@ -43,8 +43,7 @@ const SingleCard = props => {
   const { avater, name, sl, alive, country } = props;
   
   const clickHandler = id => {
-    // history.action === "POP" &&
-    history.push(`/v/${sl}`);
+    history.action === "POP" && history.push(`/v/${sl}`);
   }
 
   return (
@@ -56,7 +55,7 @@ const SingleCard = props => {
       >
         {/* Card Media */}
         <CardMedia className={classes.cover} image={avater} title={name}>
-          <span className={classes.sl}>{sl}</span>
+          { sl && <span className={classes.sl}>{sl}</span> }
         </CardMedia>
 
         {/* Card Contents */}
